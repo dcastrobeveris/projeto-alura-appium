@@ -2,6 +2,7 @@ package com.alura.appium;
 
 import static org.junit.Assert.assertTrue;
 
+import com.alura.appium.PageObjects.CadastroPageObject;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.junit.Assert;
@@ -43,15 +44,10 @@ public class FeatureCadastro
         MobileElement botaoCadastro = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/login_botao_cadastrar_usuario");
         botaoCadastro.click();
 
-        MobileElement campoNome = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_nome");
-        MobileElement campoSenha = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_senha");
-        MobileElement campoConfirmarSenha = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_confirmar_senha");
-        campoNome.setValue("Diego");
-        campoSenha.setValue("123");
-        campoConfirmarSenha.setValue("123");
-
-        MobileElement botaoConfirmarCadastro = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/cadastro_usuario_botao_cadastrar");
-        botaoConfirmarCadastro.click();
+        CadastroPageObject telaCadastro = new CadastroPageObject(driver);
+        telaCadastro.BuscarElementos();
+        telaCadastro.PreencherFormulario("Diego", "123", "123");
+        telaCadastro.Cadastrar();
 
         MobileElement botaoLogar = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/login_botao_logar");
     }
