@@ -17,8 +17,10 @@ public class FeatureCadastro
     @Test
     public void nao_consigo_cadastrar_usuario_com_senhas_que_nao_conferem() {
         AppiumDriver driver = AppiumDriverConfig.Instance().driver;
+
         MobileElement botaoCadastro = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/login_botao_cadastrar_usuario");
         botaoCadastro.click();
+
         MobileElement campoNome = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_nome");
         MobileElement campoSenha = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_senha");
         MobileElement campoConfirmarSenha = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_confirmar_senha");
@@ -31,6 +33,7 @@ public class FeatureCadastro
         MobileElement erro = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/erro_cadastro");
 
         Assert.assertEquals("Senhas não conferem", erro.getText());
+        driver.navigate().back();
     }
 
     @Test
