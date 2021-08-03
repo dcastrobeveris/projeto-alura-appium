@@ -22,18 +22,10 @@ public class FeatureCadastro
         MobileElement botaoCadastro = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/login_botao_cadastrar_usuario");
         botaoCadastro.click();
 
-        MobileElement campoNome = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_nome");
-        MobileElement campoSenha = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_senha");
-        MobileElement campoConfirmarSenha = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/input_confirmar_senha");
-        campoNome.setValue("Diego");
-        campoSenha.setValue("123");
-        campoConfirmarSenha.setValue("456");
-
-        MobileElement botaoConfirmarCadastro = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/cadastro_usuario_botao_cadastrar");
-        botaoConfirmarCadastro.click();
-        MobileElement erro = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/erro_cadastro");
-
-        Assert.assertEquals("Senhas não conferem", erro.getText());
+        CadastroPageObject telaCadastro = new CadastroPageObject(driver);
+        telaCadastro.BuscarElementos();
+        telaCadastro.Cadastrar("Diego", "123", "456");
+        Assert.assertEquals("Senhas não conferem", telaCadastro.MensagemErro());
         driver.navigate().back();
     }
 
@@ -46,8 +38,7 @@ public class FeatureCadastro
 
         CadastroPageObject telaCadastro = new CadastroPageObject(driver);
         telaCadastro.BuscarElementos();
-        telaCadastro.PreencherFormulario("Diego", "123", "123");
-        telaCadastro.Cadastrar();
+        telaCadastro.Cadastrar("Diego", "123", "123");
 
         MobileElement botaoLogar = (MobileElement) driver.findElementById("br.com.alura.aluraesporte:id/login_botao_logar");
     }
